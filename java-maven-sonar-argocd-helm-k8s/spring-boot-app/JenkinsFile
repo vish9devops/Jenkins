@@ -8,8 +8,9 @@ spipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
+        echo 'Checking out the code...'
+        // Checkout the code from your Git repository
+        git branch: 'main', url: 'https://github.com/vish9devops/Jenkins.git'
       }
     }
     stage('Build and Test') {
