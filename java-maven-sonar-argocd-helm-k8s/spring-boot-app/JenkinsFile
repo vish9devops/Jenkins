@@ -29,7 +29,7 @@ pipeline {
       steps {
         echo "Running SonarQube analysis..."
         echo "SonarQube URL: ${SONAR_URL}"
-        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+        withCredentials([string(credentialsId: 'sonaqube', variable: 'SONAR_AUTH_TOKEN')]) {
             sh '''
                 echo "Running Maven with SonarQube analysis..."
                 mvn -v  # Check if Maven is installed and available
