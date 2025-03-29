@@ -23,20 +23,19 @@ pipeline {
       }
     }
     stage('Static Code Analysis') {
-      echo "Running SonarQube ..."
       environment {
-        
         SONAR_URL = "http://192.168.225.73:9000"
-        
       }
       steps {
+        echo "Running SonarQube analysis..."
+        echo "SonarQube URL: ${SONAR_URL}"
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-            script {
-                echo "Running SonarQube analysis..."
-                echo "SonarQube URL: ${SONAR_URL}"
-                echo "SonarQube Token: ${SONAR_AUTH_TOKEN}"
-           }
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+            sh '''
+                echo "Running Maven with SonarQube analysis..."
+                mvn -v  # Check if Maven is installed and available
+                cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
+                mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}
+            '''
         }
       }
     }
