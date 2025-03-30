@@ -13,6 +13,13 @@ pipeline {
         git branch: 'main', url: 'https://github.com/vish9devops/Jenkins.git'
       }
     }
+    stage('Rebuild Docker Image') {
+      steps {
+        echo 'Rebuilding Docker image...'
+        // Navigate to the folder with the Dockerfile
+        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t your-image-name .'
+      }
+    }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
@@ -22,13 +29,7 @@ pipeline {
         sh 'echo "Running Maven clean package...2"'
       }
     }
-    stage('Rebuild Docker Image') {
-      steps {
-        echo 'Rebuilding Docker image...'
-        // Navigate to the folder with the Dockerfile
-        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t your-image-name .'
-      }
-    }
+    
     stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://192.168.225.73:9000"
