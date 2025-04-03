@@ -18,10 +18,9 @@
     </parent>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <java.version>11</java.version>
+        <maven.compiler.source>17</maven.compiler.source>   <!-- Set to Java 17 -->
+        <maven.compiler.target>17</maven.compiler.target>   <!-- Set to Java 17 -->
+        <java.version>17</java.version>   <!-- Use Java 17 -->
     </properties>
 
     <dependencies>
