@@ -1,5 +1,5 @@
-# Use an appropriate base image for Java 17 (OpenJDK 17 on Alpine)
-FROM adoptopenjdk/openjdk17:alpine-jre
+# Use Eclipse Temurin OpenJDK 17 (Alpine) base image
+FROM eclipse-temurin:17-alpine
 
 # Install Maven to build the Spring Boot project (if needed)
 RUN apk add --no-cache maven && rm -rf /var/cache/apk/*
@@ -27,4 +27,4 @@ COPY java-maven-sonar-argocd-helm-k8s/spring-boot-app/target/spring-boot-web.jar
 ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
 
 # Expose the port your application is running on (if necessary)
-EXPOSE 8080
+EXPOSE 8081
