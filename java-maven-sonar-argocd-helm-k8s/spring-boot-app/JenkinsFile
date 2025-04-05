@@ -1,4 +1,4 @@
-pipeline {
+//pipeline {
   agent {
     docker {
       //image 'abhishekf5/maven-abhishek-docker-agent:v1'
@@ -20,7 +20,7 @@ pipeline {
         sh 'mvn -version'
         // build the project and create a JAR file
         sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
-        sh 'ls -l java-maven-sonar-argocd-helm-k8s/spring-boot-app'
+        //sh 'ls -l java-maven-sonar-argocd-helm-k8s/spring-boot-app'
       }
     }
     stage('Static Code Analysis') {
