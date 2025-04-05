@@ -1,19 +1,21 @@
 # Use Eclipse Temurin OpenJDK 17 (Alpine) base image
 FROM eclipse-temurin:17-alpine
 
-# Install Maven to build the Spring Boot project (if needed)
-RUN apk add --no-cache maven && rm -rf /var/cache/apk/*
+# Install Maven
+RUN apk update && \
+    apk add --no-cache maven && \
+    rm -rf /var/cache/apk/*
 
 # Set the working directory in the container
 WORKDIR /opt/app
 
-# Copy the source code into the container (change this to the correct path)
+# Copy the source code into the container
 COPY . /opt/app
 
-# Debug: List files in the workspace to check if the source code and pom.xml are there
+# List files in the working directory for debugging purposes
 RUN ls -l /opt/app
 
-# Build the project and create a JAR file inside the container
+# Build the project and create a JAR file
 WORKDIR /opt/app/java-maven-sonar-argocd-helm-k8s/spring-boot-app
 RUN mvn clean package
 
