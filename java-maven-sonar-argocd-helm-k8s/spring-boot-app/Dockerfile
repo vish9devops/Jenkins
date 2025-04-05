@@ -12,7 +12,7 @@ WORKDIR /opt/app
 # Copy the source code into the container
 COPY . /opt/app
 
-# List files in the working directory for debugging purposes
+# Debug: List files in the working directory for debugging purposes
 RUN ls -l /opt/app
 
 # Build the project and create a JAR file
